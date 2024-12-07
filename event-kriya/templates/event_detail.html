@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 70%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .next-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+
+        .next-btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        // Function to save event details in localStorage
+        function saveEventDetails() {
+            const form = document.getElementById('eventDetailsForm');
+            const formData = new FormData(form);
+            const eventDetails = {};
+
+            // Collect form data and create an object
+            formData.forEach((value, key) => {
+                eventDetails[key] = value;
+            });
+
+            // Save event details to localStorage
+            try {
+                localStorage.setItem('eventDetails', JSON.stringify(eventDetails));
+                alert('Event details saved successfully!');
+            } catch (e) {
+                alert('Error saving event details to localStorage.');
+            }
+
+            // Navigate to the next page (event.html)
+            window.location.href = './event';
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Event Details</h1>
+        <form id="eventDetailsForm" onsubmit="event.preventDefault(); saveEventDetails();">
+            <!-- Secretary Details -->
+            <h3>Secretary Details:</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td><input type="text" name="secretary_name" required></td>
+                </tr>
+                <tr>
+                    <th>Roll Number</th>
+                    <td><input type="text" name="secretary_roll_number" required></td>
+                </tr>
+                <tr>
+                    <th>Mobile No</th>
+                    <td><input type="text" name="secretary_mobile" required></td>
+                </tr>
+            </table>
+
+            <!-- Convenor Details -->
+            <h3>Convenor Details:</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td><input type="text" name="convenor_name" required></td>
+                </tr>
+                <tr>
+                    <th>Roll Number</th>
+                    <td><input type="text" name="convenor_roll_number" required></td>
+                </tr>
+                <tr>
+                    <th>Mobile No</th>
+                    <td><input type="text" name="convenor_mobile" required></td>
+                </tr>
+            </table>
+
+            <!-- Faculty Advisor Details -->
+            <h3>Faculty Advisor Details:</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td><input type="text" name="faculty_advisor_name" required></td>
+                </tr>
+                <tr>
+                    <th>Designation</th>
+                    <td><input type="text" name="faculty_advisor_designation" required></td>
+                </tr>
+                <tr>
+                    <th>Contact Details</th>
+                    <td><input type="text" name="faculty_advisor_contact" required></td>
+                </tr>
+            </table>
+
+            <!-- Judge Details -->
+            <h3>Judge Details:</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td><input type="text" name="judge_name" required></td>
+                </tr>
+                <tr>
+                    <th>Designation</th>
+                    <td><input type="text" name="judge_designation" required></td>
+                </tr>
+                <tr>
+                    <th>Contact Details</th>
+                    <td><input type="text" name="judge_contact" required></td>
+                </tr>
+            </table>
+
+            <button type="submit" class="next-btn">Next</button>
+        </form>
+    </div>
+</body>
+
+</html>
