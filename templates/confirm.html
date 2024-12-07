@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/confirm.css') }}">
+
+    <title>Confirmation Page</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Event Submitted Successfully!</h1>
+
+        <div class="message">
+            Your event has been successfully submitted.
+        </div>
+
+        <div class="event-id">
+            Event ID: <span id="eventId">Loading...</span>
+        </div>
+
+        <a href="{{ url_for('view_preview') }}" class="btn">Download PDF</a>    
+    </div>
+
+    <script>
+        // Function to get the event ID from the session and display it
+        window.onload = function () {
+            // Get event ID from sessionStorage (set in the backend)
+            const eventId = sessionStorage.getItem('event_id');
+            if (eventId) {
+                document.getElementById('eventId').textContent = eventId;
+            } else {
+                document.getElementById('eventId').textContent = 'N/A';
+            }
+        };
+    </script>
+
+</body>
+
+</html>
